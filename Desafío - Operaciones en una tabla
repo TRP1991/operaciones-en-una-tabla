@@ -1,0 +1,231 @@
+😀️😀️😀️INSTRUCCIONES
+😀️😀️PARTE 1
+
+😀️ 1. CREAR BASE DE DATOS POSTS (1 PUNTO)
+
+TRubilarP=# CREATE DATABASE posts;
+CREATE DATABASE
+TRubilarP=# \c posts;
+You are now connected to database "posts" as user "TRubilarP".
+posts=# 
+
+
+😀️ 2. CREAR TABLA POST, CON LOS ATRIBUTOS ID, NOMBRE DE USUARIO, FECHA DE CREACIÓN, CONTENIDO, DESCRIPCIÓN (1 PUNTO)
+
+posts=# CREATE TABLE post(
+posts(# id INT,
+posts(# nombre_de_usuario VARCHAR(25),
+posts(# fecha_de_creacion DATE,
+posts(# contenido VARCHAR(25),
+posts(# descripcion VARCHAR(255),
+posts(# PRIMARY KEY (id)
+posts(# );
+CREATE TABLE
+posts=# 
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion | contenido | descripcion 
+----+-------------------+-------------------+-----------+-------------
+(0 rows)
+
+
+😀️ 3. INSERTAR 3 POST, 2 PARA EL USUARIO "PAMELA" Y UNO PARA "CARLOS" (0.6 PUNTOS)
+
+posts=# INSERT INTO post(id, nombre_de_usuario, fecha_de_creacion, contenido, descripcion) VALUES ('01', 'Pamela', '2020-07-25', 'Intelectual Ocasional', 'Flor que Tararea');
+INSERT 0 1
+posts=# INSERT INTO post(id, nombre_de_usuario, fecha_de_creacion, contenido, descripcion) VALUES ('02', 'Pamela', '2020-07-25', 'Humana metodica', 'Frescura por accidente');
+INSERT 0 1
+posts=# INSERT INTO post(id, nombre_de_usuario, fecha_de_creacion, contenido, descripcion) VALUES ('03', 'Carlos', '2020-07-25', 'Investigador ondeante', 'Ictiófilo moderado');
+INSERT 0 1
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion |       contenido       |      descripcion       
+----+-------------------+-------------------+-----------------------+------------------------
+  1 | Pamela            | 2020-07-25        | Intelectual Ocasional | Flor que Tararea
+  2 | Pamela            | 2020-07-25        | Humana metodica       | Frescura por accidente
+  3 | Carlos            | 2020-07-25        | Investigador ondeante | Ictiófilo moderado
+(3 rows)
+
+
+😀️ 4. MODIFICAR LA TABLA POST, AGREGANDO LA COLUMNA TÍTULO (1 PUNTO)
+
+posts=# ALTER TABLE post
+posts-# ADD título VARCHAR(50);
+ALTER TABLE
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion |       contenido       |      descripcion       | título 
+----+-------------------+-------------------+-----------------------+------------------------+--------
+  1 | Pamela            | 2020-07-25        | Intelectual Ocasional | Flor que Tararea       | 
+  2 | Pamela            | 2020-07-25        | Humana metodica       | Frescura por accidente | 
+  3 | Carlos            | 2020-07-25        | Investigador ondeante | Ictiófilo moderado     | 
+(3 rows)
+
+
+😀️ 5. AGREGAR TÍTULO A LAS PUBLICACIONES YA INGRESADAS (1 PUNTO)
+
+posts=# UPDATE post SET título='Isleña' WHERE id='01';
+UPDATE 1
+posts=# UPDATE post SET título='Pionera' WHERE id='02';
+UPDATE 1
+posts=# UPDATE post set título='Isleño' WHERE id='03';
+UPDATE 1
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion |       contenido       |      descripcion       | título  
+----+-------------------+-------------------+-----------------------+------------------------+---------
+  1 | Pamela            | 2020-07-25        | Intelectual Ocasional | Flor que Tararea       | Isleña
+  2 | Pamela            | 2020-07-25        | Humana metodica       | Frescura por accidente | Pionera
+  3 | Carlos            | 2020-07-25        | Investigador ondeante | Ictiófilo moderado     | Isleño
+(3 rows)
+
+
+😀️ 6. INSERTAR 2 POST PARA EL USUARIO "PEDRO" (0.4 PUNTOS)
+
+posts=# INSERT INTO post(id, nombre_de_usuario, fecha_de_creacion, contenido, descripcion, título) VALUES ('04', 'Pedro', '2020-07-25', 'Fantasma que no vuela', 'Fan de la pesca', 'Relativo');
+INSERT 0 1
+
+posts=# INSERT INTO post(id, nombre_de_usuario, fecha_de_creacion, contenido, descripcion, título) VALUES ('05', 'Pedro', '2020-07-25', 'Fiestero recién llegado', 'Estrella por accidente', 'Fénix');
+INSERT 0 1
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion |        contenido        |      descripcion       |  título  
+----+-------------------+-------------------+-------------------------+------------------------+----------
+  1 | Pamela            | 2020-07-25        | Intelectual Ocasional   | Flor que Tararea       | Isleña
+  2 | Pamela            | 2020-07-25        | Humana metodica         | Frescura por accidente | Pionera
+  3 | Carlos            | 2020-07-25        | Investigador ondeante   | Ictiófilo moderado     | Isleño
+  4 | Pedro             | 2020-07-25        | Fantasma que no vuela   | Fan de la pesca        | Relativo
+  5 | Pedro             | 2020-07-25        | Fiestero recién llegado | Estrella por accidente | Fénix
+(5 rows)
+
+
+😀️ 7. ELIMINAR EL POST DE CARLOS (1 PUNTO)
+
+posts=# DELETE FROM post WHERE nombre_de_usuario='Carlos';
+DELETE 1
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion |        contenido        |      descripcion       |  título  
+----+-------------------+-------------------+-------------------------+------------------------+----------
+  1 | Pamela            | 2020-07-25        | Intelectual Ocasional   | Flor que Tararea       | Isleña
+  2 | Pamela            | 2020-07-25        | Humana metodica         | Frescura por accidente | Pionera
+  4 | Pedro             | 2020-07-25        | Fantasma que no vuela   | Fan de la pesca        | Relativo
+  5 | Pedro             | 2020-07-25        | Fiestero recién llegado | Estrella por accidente | Fénix
+(4 rows)
+
+
+😀️ 8. INGRESAR UN NUEVO POST PARA EL USUARIO "CARLOS" (0.6 PUNTOS)
+
+posts=# INSERT INTO post(id, nombre_de_usuario, fecha_de_creacion, contenido, descripcion, título) VALUES ('03', 'Carlos', '2020-07-25', 'Ictiófilo Moderado', 'Ondeante Investigador', 'Mrs. Peces');
+INSERT 0 1
+
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion |        contenido        |      descripcion       |   título   
+----+-------------------+-------------------+-------------------------+------------------------+------------
+  1 | Pamela            | 2020-07-25        | Intelectual Ocasional   | Flor que Tararea       | Isleña
+  2 | Pamela            | 2020-07-25        | Humana metodica         | Frescura por accidente | Pionera
+  4 | Pedro             | 2020-07-25        | Fantasma que no vuela   | Fan de la pesca        | Relativo
+  5 | Pedro             | 2020-07-25        | Fiestero recién llegado | Estrella por accidente | Fénix
+  3 | Carlos            | 2020-07-25        | Ictiófilo Moderado      | Ondeante Investigador  | Mrs. Peces
+(5 rows)
+
+
+🤣️🤣️PARTE 2
+
+🤣️ 9. CREAR UNA NUEVA TABLA, LLAMADA COMENTARIOS, CON LOS ATRIBUTOS ID, FECHA Y HORA DE CREACIÓN, CONTENIDO, QUE SE RELACIONE CON LA TABLA POSTS. (1 PUNTO)
+
+posts=# CREATE TABLE comentarios(
+posts(# id INT,
+posts(# fecha_y_hora_de_creacion TIMESTAMP,
+posts(# contenido VARCHAR(25),
+posts(# FOREIGN KEY (id) REFERENCES
+posts(# post(id)
+posts(# );
+CREATE TABLE
+posts=# 
+
+posts=# SELECT * FROM comentarios;
+ id | fecha_y_hora_de_creacion | contenido 
+----+--------------------------+-----------
+(0 rows)
+
+
+
+🤣️ 10. CREAR 2 COMENTARIOS PARA EL POST DE "PAMELA" Y 4 PARA "CARLOS" (0.4 PUNTOS)
+
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('01', '2020-07-25 17:42:00', 'Usuario Pamela1 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('02', '2020-07-25 17:43:00', 'Usuario Pamela2 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('03', '2020-07-25 17:45:00', 'Usuario Carlos1 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('04', '2020-07-25 17:46:00', 'Usuario Carlos2 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('05', '2020-07-25 17:46:00', 'Usuario Carlos3 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('05', '2020-07-25 17:46:00', 'Usuario Carlos4 creado');
+INSERT 0 1
+
+posts=# SELECT * FROM comentarios;
+ id | fecha_y_hora_de_creacion |       contenido        
+----+--------------------------+------------------------
+  1 | 2020-07-25 17:42:00      | Usuario Pamela1 creado
+  2 | 2020-07-25 17:43:00      | Usuario Pamela2 creado
+  3 | 2020-07-25 17:45:00      | Usuario Carlos1 creado
+  4 | 2020-07-25 17:46:00      | Usuario Carlos2 creado
+  5 | 2020-07-25 17:46:00      | Usuario Carlos3 creado
+  5 | 2020-07-25 17:46:00      | Usuario Carlos4 creado
+(6 rows)
+
+
+
+🤣️ 11. CREAR UN NUEVO POST PARA "MARGARITA" (1 PUNTO)
+
+posts=# INSERT INTO post(id, nombre_de_usuario, fecha_de_creacion, contenido, descripcion, título) VALUES ('06', 'Margarita', '2020-07-25', 'Fósil recién nacida', 'Ingrediente Pionera', 'Novata');
+INSERT 0 1
+
+posts=# SELECT * FROM post;
+ id | nombre_de_usuario | fecha_de_creacion |        contenido        |      descripcion       |   título   
+----+-------------------+-------------------+-------------------------+------------------------+------------
+  1 | Pamela            | 2020-07-25        | Intelectual Ocasional   | Flor que Tararea       | Isleña
+  2 | Pamela            | 2020-07-25        | Humana metodica         | Frescura por accidente | Pionera
+  4 | Pedro             | 2020-07-25        | Fantasma que no vuela   | Fan de la pesca        | Relativo
+  5 | Pedro             | 2020-07-25        | Fiestero recién llegado | Estrella por accidente | Fénix
+  3 | Carlos            | 2020-07-25        | Ictiófilo Moderado      | Ondeante Investigador  | Mrs. Peces
+  6 | Margarita         | 2020-07-25        | Fósil recién nacida     | Ingrediente Pionera    | Novata
+(6 rows)
+
+
+🤣️ 12. INGRESAR 5 COMENTARIOS PARA EL POST DE MARGARITA. (1 PUNTO)
+
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('6', '2020-07-25 17:48:00', 'Usuario Margarita1, creado');
+ERROR:  value too long for type character varying(25)
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('6', '2020-07-25 17:48:00', 'Usuario Margarita1 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('6', '2020-07-25 17:49:00', 'Usuario Margarita2 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('6', '2020-07-25 17:49:00', 'Usuario Margarita3 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('6', '2020-07-25 17:49:00', 'Usuario Margarita4 creado');
+INSERT 0 1
+posts=# INSERT INTO comentarios(id, fecha_y_hora_de_creacion, contenido) VALUES ('6', '2020-07-25 17:50:00', 'Usuario Margarita5 creado');
+INSERT 0 1
+
+posts=# SELECT * FROM comentarios;
+ id | fecha_y_hora_de_creacion |         contenido         
+----+--------------------------+---------------------------
+  1 | 2020-07-25 17:42:00      | Usuario Pamela1 creado
+  2 | 2020-07-25 17:43:00      | Usuario Pamela2 creado
+  3 | 2020-07-25 17:45:00      | Usuario Carlos1 creado
+  4 | 2020-07-25 17:46:00      | Usuario Carlos2 creado
+  5 | 2020-07-25 17:46:00      | Usuario Carlos3 creado
+  5 | 2020-07-25 17:46:00      | Usuario Carlos4 creado
+  6 | 2020-07-25 17:48:00      | Usuario Margarita1 creado
+  6 | 2020-07-25 17:49:00      | Usuario Margarita2 creado
+  6 | 2020-07-25 17:49:00      | Usuario Margarita3 creado
+  6 | 2020-07-25 17:49:00      | Usuario Margarita4 creado
+  6 | 2020-07-25 17:50:00      | Usuario Margarita5 creado
+(11 rows)
+
+
